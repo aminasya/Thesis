@@ -48,7 +48,7 @@ Function applyPermutation(Function func, const Permutation& per, int n)
         {
             if (mask & (1 << i))
             {
-                newMask |= (1 << per[i]);
+                newMask |= (1 << (n - per[n - i - 1] - 1));
             }
         }
         newFunc |= (1 << newMask);

@@ -155,13 +155,85 @@ void testApplyPermutation2()
     assert(res == func);
 }
 
-void testApplyPermutation2()
+void testApplyPermutation3()
 {
     const int n = 2;
-    Function func = stringToFunction("11", n);
-    Permutation p = {0};
+    Function func = stringToFunction("0101", n);
+    Permutation p = {1, 0};
+    Function res = applyPermutation(func, p, n);
+    assert(functionToString(res, n) == "0011");
+}
+
+void testApplyPermutation4()
+{
+    const int n = 2;
+    Function func = stringToFunction("0101", n);
+    Permutation p = {0, 1};
+    Function res = applyPermutation(func, p, n);
+    assert(functionToString(res, n) == "0101");
+}
+
+void testApplyPermutation5()
+{
+    const int n = 2;
+    Function func = stringToFunction("1110", n);
+    Permutation p = {1, 0};
+    Function res = applyPermutation(func, p, n);
+    assert(functionToString(res, n) == "1110");
+}
+
+void testApplyPermutation6()
+{
+    const int n = 2;
+    Function func = stringToFunction("1100", n);
+    Permutation p = {1, 0};
+    Function res = applyPermutation(func, p, n);
+    assert(functionToString(res, n) == "1010");
+}
+
+void testApplyPermutation31()
+{
+    const int n = 3;
+    Function func = stringToFunction("01010101", n);
+    Permutation p = {0, 1, 2};
     Function res = applyPermutation(func, p, n);
     assert(res == func);
+}
+
+void testApplyPermutation32()
+{
+    const int n = 3;
+    Function func = stringToFunction("01010101", n);
+    Permutation p = {0, 2, 1};
+    Function res = applyPermutation(func, p, n);
+    assert(functionToString(res, n) == "00110011");
+}
+
+void testApplyPermutation33()
+{
+    const int n = 3;
+    Function func = stringToFunction("01010101", n);
+    Permutation p = {1, 2, 0};
+    Function res = applyPermutation(func, p, n);
+    assert(functionToString(res, n) == "00001111");
+}
+
+void testApplyPermutation34()
+{
+    const int n = 3;
+    Function func = stringToFunction("01110111", n);
+    Permutation p = {2, 1, 0};
+    Function res = applyPermutation(func, p, n);
+    assert(functionToString(res, n) == "00111111");
+}
+
+void testApplyPermutation35()
+{
+    const int n = 3;
+    Function func = stringToFunction("01110111", n);
+    Permutation p = {1, 0, 2};
+    Function res = applyPermutation(func, p, n);
+    assert(functionToString(res, n) == "01011111");
 }
 
 void test()
@@ -182,4 +254,12 @@ void test()
     testApplyPermutation1();
     testApplyPermutation2();
     testApplyPermutation3();
+    testApplyPermutation4();
+    testApplyPermutation5();
+    testApplyPermutation6();
+    testApplyPermutation31();
+    testApplyPermutation32();
+    testApplyPermutation33();
+    testApplyPermutation34();
+    testApplyPermutation35();
 }
