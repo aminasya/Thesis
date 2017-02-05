@@ -15,12 +15,12 @@ int main()
     test();
 #endif // 
 
-    const int n = 4;
+    const int n = 3;
 
     int orbit = 0;
-    std::vector<int> orbitOfFunction(1 << (1 << n), -1);
+    std::vector<int> orbitOfFunction(1ll << (1ll << n), -1);
 
-    std::vector<int> orbitCount(25);
+    std::vector<int> orbitCount(121);
 
     for (int func = 0; func < orbitOfFunction.size(); ++func)
     {
@@ -28,7 +28,7 @@ int main()
             continue;
         orbit++;
         //std::cout << orbit << std::endl;
-        //std::cout << functionToString(func, n);
+        //std::cout << functionToString(func, n) << std::endl;
         orbitOfFunction[func] = orbit;
         int count = 1;
 
@@ -39,19 +39,30 @@ int main()
             if (orbitOfFunction[nextFunction] == -1)
             {
                 orbitOfFunction[nextFunction] = orbit;
-         //       std::cout << ", " << functionToString(nextFunction, n) ;
+            //    std::cout << functionToString(nextFunction, n) << std::endl;
                 count++;
             }
         }
-        //std::cout << count << std::endl;
         orbitCount[count]++;
     }
-    for (int i = 0; i < 25; ++i)
+    for (int i = 0; i < 121; ++i)
     {
         if (orbitCount[i] != 0)
         {
             std::cout << i << " " << orbitCount[i] << std::endl;
         }
     }
+
+
+    //std::string func = "0100010001000100";
+    ////std::string func = "0100010000100100";
+    //std::set<Function> funcs = getEquivalentFunctions(stringToFunction(func, n), n);
+
+    //for (Function func : funcs)
+    //{
+    //    std::cout << functionToString(func, n) << std::endl;
+    //}
+    //std::cout << funcs.size() << std::endl;
+    //
 
 }

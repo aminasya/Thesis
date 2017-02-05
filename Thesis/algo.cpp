@@ -37,43 +37,43 @@ Function applyPermutation(Function func, const Permutation& per, int n)
 {
     assert(per.size() == n);
     Function newFunc = 0;
-    for (int mask = 0; mask < (1 << n); ++mask)
+    for (UnderlyingType mask = 0; mask < (1ull << n); ++mask)
     {
-        if (!(func & (1 << mask)))
+        if (!(func & (1ll << mask)))
         {
             continue;
         }
-        int newMask = 0;
+        UnderlyingType newMask = 0;
         for (int i = 0; i < n; ++i)
         {
-            if (mask & (1 << i))
+            if (mask & (1ll << i))
             {
-                newMask |= (1 << (n - per[n - i - 1] - 1));
+                newMask |= (1ll << (n - per[n - i - 1] - 1));
             }
         }
-        newFunc |= (1 << newMask);
+        newFunc |= (1ll << newMask);
     }
     return newFunc;
 }
 
 Function stringToFunction(const std::string& str, int n)
 {
-    assert(str.size() == (1 << n));
+    assert(str.size() == (1ull << n));
     Function func = 0;
     for (size_t i = 0; i < str.size(); ++i)
     {
         assert(str[i] == '0' || str[i] == '1');
-        func |= ((str[i] - '0') << i);
+        func |= (static_cast<UnderlyingType>(str[i] - '0') << i);
     }
     return func;
 }
 
 std::string functionToString(Function func, int n)
 {
-    std::string res(1 << n, '0');
-    for (int i = 0; i < (1 << n); ++i)
+    std::string res(1ull << n, '0');
+    for (int i = 0; i < (1ll << n); ++i)
     {
-        res[i] += !!(func & (1 << i));
+        res[i] += !!(func & (1ll << i));
     }
     return res;
 }
