@@ -32,30 +32,6 @@ Permutations getAllPermutations(int n)
     return result;
 }
 
-
-Function applyPermutation(Function func, const Permutation& per, int n)
-{
-    assert(per.size() == n);
-    Function newFunc = 0;
-    for (UnderlyingType mask = 0; mask < (1ull << n); ++mask)
-    {
-        if (!(func & (1ll << mask)))
-        {
-            continue;
-        }
-        UnderlyingType newMask = 0;
-        for (int i = 0; i < n; ++i)
-        {
-            if (mask & (1ll << i))
-            {
-                newMask |= (1ll << (n - per[n - i - 1] - 1));
-            }
-        }
-        newFunc |= (1ll << newMask);
-    }
-    return newFunc;
-}
-
 Function stringToFunction(const std::string& str, int n)
 {
     assert(str.size() == (1ull << n));
