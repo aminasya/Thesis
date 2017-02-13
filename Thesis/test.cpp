@@ -1,6 +1,8 @@
 #include "algo.h"
+#include "bitset.h"
 
 #include <cassert>
+#include <sstream>
 
 void testPermutations1()
 {
@@ -236,6 +238,68 @@ void testApplyPermutation35()
     assert(functionToString(res, n) == "01011111");
 }
 
+void testBitset1()
+{
+    const int size = 100;
+    Bitset bitset(size);
+
+    for (int i = 0; i < size; ++i)
+    {
+        assert(!bitset.getBit(i));
+    }
+
+    assert(!bitset.getBit(74));
+    bitset.setBit(74);
+    assert(bitset.getBit(74));
+
+    assert(!bitset.getBit(41));
+    bitset.setBit(41);
+    assert(bitset.getBit(41));
+
+    assert(!bitset.getBit(0));
+    bitset.setBit(0);
+    assert(bitset.getBit(0));
+    bitset.clearBit(0);
+    assert(!bitset.getBit(0));
+}
+
+void testBitsetSerializeDeserialize()
+{
+    std::vector<uint64_t> numbers{ 5, 6, 7, 14, 85, 124, 160, 165, 168, 170, 171, 186, 195 };
+    Bitset bitset(200);
+
+    for (int i = 0; i < numbers.size(); ++i)
+    {
+        bitset.setBit(numbers[i]);
+    }
+
+    std::ostringstream ostream;
+    bitset.serialize(ostream);
+
+    std::istringstream istream(ostream.str());
+
+    Bitset bitset2;
+    bitset2.deserialize(istream);
+
+    for (int i = 0; i < 200; ++i)
+    {
+        if (std::find(numbers.begin(), numbers.end(), i) == numbers.end())
+        {
+            assert(!bitset2.getBit(i));
+        }
+        else
+        {
+            assert(bitset2.getBit(i));
+        }
+    }
+}
+
+void testBitset()
+{
+    testBitset1();
+    testBitsetSerializeDeserialize();
+}
+
 void test()
 {
     testPermutations1();
@@ -262,4 +326,6 @@ void test()
     testApplyPermutation33();
     testApplyPermutation34();
     testApplyPermutation35();
+
+    testBitset();
 }
