@@ -13,6 +13,7 @@ int factorial(int n)
     return n * factorial(n - 1);
 }
 
+template <typename GroupType>
 class OrbitCalculator
 {
 public:
@@ -22,6 +23,7 @@ public:
         , m_orbitCount(factorial(n) + 1)
         , m_function(0)
         , m_fileName("data.txt")
+        , m_group(n)
     {}
 
     void save()
@@ -62,7 +64,7 @@ public:
 
     void doIterations(uint64_t itarationCount)
     {
-        Permutations permutations = getAllPermutations(m_n);
+
         uint64_t iterations = 0;
         while (m_function < m_bitset.size() && iterations < itarationCount)
         {
@@ -74,15 +76,16 @@ public:
             m_bitset.setBit(m_function);
             int count = 1;
 
-            for (const Permutation& perm : permutations)
-            {
-                Function nextFunction = applyPermutation(m_function, perm, m_n);
+            m_group.begin();
+            do {
+                Function nextFunction = m_group.applyElemToFunction(m_function);
                 if (!m_bitset.getBit(nextFunction))
                 {
                     m_bitset.setBit(nextFunction);
                     count++;
                 } 
-            }
+
+            } while (m_group.nextElem());
 
             m_orbitCount[count]++;
             if (iterations % 1000000 == 0)
@@ -99,4 +102,5 @@ private:
     std::vector<int> m_orbitCount;
     uint64_t m_function;
     const std::string m_fileName;
+    GroupType m_group;
 };

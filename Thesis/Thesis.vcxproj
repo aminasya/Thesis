@@ -152,6 +152,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="algo.h" />
+    <ClInclude Include="bitset.h" />
+    <ClInclude Include="group.h" />
+    <ClInclude Include="orbit_calculator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

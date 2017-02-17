@@ -7,6 +7,7 @@
 #include "algo.h"
 #include "bitset.h"
 #include "orbit_calculator.h"
+#include "group.h"
 
 void test();
 
@@ -18,10 +19,9 @@ int main()
 #endif // 
 
 
-    OrbitCalculator calculator(5);
+    OrbitCalculator<PermutationGroup> calculator(4);
 
     //calculator.load();
-    // 5 rope * 100
-    calculator.doIterations(100);
+    calculator.doIterations(50000);
     calculator.save();
 }

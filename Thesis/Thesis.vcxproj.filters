@@ -29,5 +29,14 @@
     <ClInclude Include="algo.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="bitset.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="orbit_calculator.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="group.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

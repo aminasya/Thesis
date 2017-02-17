@@ -32,6 +32,7 @@ Permutations getAllPermutations(int n)
     return result;
 }
 
+
 Function stringToFunction(const std::string& str, int n)
 {
     assert(str.size() == (1ull << n));
