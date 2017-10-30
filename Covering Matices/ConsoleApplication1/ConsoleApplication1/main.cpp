@@ -274,18 +274,16 @@ Set getAllNonDegenerateMatrices(int n)
 Set getAllDegenerateMatrices(int n)
 {
     auto allMatices = getAllMatrices(n);
-    Set nondegenerateMatices;
+    Set degenerateMatices;
     for (auto& m : allMatices)
     {
-        if (determinant(m))
+        if (determinant(m) == 0)
         {
-            nondegenerateMatices.insert(m);
+            degenerateMatices.insert(m);
         }
     }
-    return nondegenerateMatices;
+    return degenerateMatices;
 }
-
-
 
 Set getAllTranspositions(int n)
 {
@@ -498,21 +496,20 @@ Coset getRandomDim4Coset(const Set& allToCover)
 int main()
 {
     srand(time(0));
-    int n = 3;
-    auto toCover = getAllNonDegenerateMatrices(n);
-    //auto toCover = getAllTranspositions(n);
-    printCoset(toCover);
+    for (int n = 1; n < 30; ++n)
+    {
+        //   auto toCover = getAllDegenerateMatrices(n);
+        //   printCoset(toCover);
 
+       //    std::cout << toCover.size() << std::endl;
 
-    //auto cosets2 = getCosetsDim2(toCover);
-    //std::cout << cosets2.size() << std::endl;
-    //for (const Coset& c : getCosetsDim2(toCover))
-    //{
-    //    printCoset(c);
-    //}
-
-    Coset cos4 = getRandomDim4Coset(toCover);
-    printCoset(cos4);
+        double res = 1;
+        for (int i = 1; i <= n; ++i)
+        {
+            res *= ((1 << i) - 1.0) / (1 << i);
+        }
+        std::cout << res << std::endl;
+    }
 
 }
 
